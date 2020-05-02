@@ -1,33 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Finance-4-Me</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <nav>
-    <div class="navbar navbar-light" style="background-color: #e3f2fd;">
-        <div class='container'>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('home') }}">Finance-4-Me</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#">Cash Assets</a></li>
-                <li><a href="#">Investments</a></li>
-                <li><a href="#">Other</a></li>
-            </ul>
-        </div>
-        </div>
-    </div>
-    </nav>
-    <div class="container-fluid">
-        <h3>Basic Navbar Example</h3>
-        <p>A navigation bar is a navigation header that is placed at the top of the page.</p>
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Net Worth</h2>
+        <h3>All assets, investments and debts!</h3>
+        <h4>Assets: </h4>
+        <h4>Investments: </h4>
+        <h4>Debts </h4>
+        <h4>Net Worth: </h4>
+    <br>
+    <h2>Asset Breakdown</h2>
+        <h3>All and any positive assets held by yourself!</h3>
+        <p>Total cash and investments:</p>            
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Institution</th>
+                <th>Amount</th>
+                <th>Interest</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            </tbody>
+        </table>
+    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
+    <br>
+    <br>
+    <h2>Debt Breakdown</h2>
+        <h3>All and any debts held by yourself!</h3>
+        <p>Total debts:</p>            
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Interest</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            </tbody>
+        </table>
+    <a href="{{ url_for('assets') }}">Forgot to add some debts! Add them over on the debts page!</a>
+    <br>
+    <br>
+</div>
+{% endblock content %}
