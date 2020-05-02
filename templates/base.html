@@ -21,15 +21,13 @@
                 <li><a href="{{ url_for('assets') }}">Assets</a></li>
                 <li><a href="{{ url_for('investments') }}">Investments</a></li>
                 <li><a href="{{ url_for('debts') }}">Debts</a></li>
+                <li><a href="{{ url_for('account') }}">My Account</a></li>
             </ul>
-            <div class=" nav navbar-nav">
-                <li><a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a></li>
-                <li><a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a></li>
-            </div>
         </div>
         </div>
     </div>
     </nav>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
