@@ -15,3 +15,14 @@ Flask website showing current assets, net worth and different bank accounts a us
   Next steps:
   - implement sql database
   - create login and register
+Design change:
+Home
+Assets
+Investments
+Debts
+Account
+  - Net Worth
+  - Asset Breakdown
+  - Debt Breakdown
+Login
+Register

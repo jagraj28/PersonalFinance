@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Net Worth</h2>
+    <style>
+        .even-larger-badge{
+            font-size: 2.0em;
+        }
+    </style>
+    <span class="badge badge-info even-larger-badge">0</span>
+    <br>
+    <br>
+    <h2>Asset Breakdown</h2>
+        <h4>Total cash and investments:</h4>         
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Institution</th>
+                <th>Amount</th>
+                <th>Interest</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            </tbody>
+        </table>
+    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
+    <br>
+    <br>
+    <h2>Debt Breakdown</h2>
+        <h4>Total debts:</h4>         
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Interest</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type='text'></td>
+            </tr>
+            </tbody>
+        </table>
+    <a href="{{ url_for('debts') }}">Forgot to add some debts! Add them over on the debts page!</a>
+    <br>
+    <br>
+</div>
+{% endblock content %}
