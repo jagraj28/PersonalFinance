@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" href='run.py'>
 <div class="container">
     <h2>Net Worth</h2>
     <style>
@@ -23,9 +24,9 @@
             </thead>
             <tbody>
             <tr>
-                <td>{{ adding_assets.bank }}</td>
-                <td>{{ adding_assets.amount }}</td>
-                <td>{{ adding_assets.interest }}</td>
+                <td>{{ user.bank }}</td>
+                <td>{{ user.amount }}</td>
+                <td>{{ user.interest }}</td>
                 <td><input type='text'></td>
             </tr>
             <tr>

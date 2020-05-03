@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 class adding_assets(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    bank = db.Column(db.String(20), unique=True, nullable=False)
+    bank = db.Column(db.String(30), unique=True, nullable=False)
     amount = db.Column(db.Integer, unique=True, nullable=False)
     interest = db.Column(db.Integer, unique=True, nullable=False)
 
@@ -26,7 +26,7 @@ def home():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(f'Account created!', 'success')
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
@@ -42,10 +42,6 @@ def login():
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/account', methods=['GET', 'POST'])
-def account():
-    return render_template('account.html')
-
 @app.route('/assets', methods=['GET', 'POST'])
 def assets():
     form = add_assets()
@@ -54,7 +50,7 @@ def assets():
         db.session.add(asset)
         db.session.commit()
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('home'), form=form)
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('assets.html', title='Assets', form=form)
@@ -64,7 +60,7 @@ def investments():
     form = add_investments()
     if form.validate_on_submit():
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('home'), form=form)
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('investments.html', title='Investments', form=form)
@@ -74,10 +70,15 @@ def debts():
     form = add_debts()
     if form.validate_on_submit():
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('home'), form=form)
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('debts.html', title='Debts', form=form)
+
+@app.route('/account', methods=['GET', 'POST'])
+def account():
+    user = adding_assets.query.get(1)
+    return render_template('account.html', title='Account', user=user)
 
 if __name__ == '__main__':
     app.run(debug=True)
