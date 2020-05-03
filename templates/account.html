@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for asset in form %}
+            {% for asset in form_1 %}
             {% if asset %}
             <tr>
                 <td>{{ asset.bank }}</td>
@@ -30,12 +30,28 @@
                 <td>{{ asset.interest }}</td>
             </tr>
             {% else %}
-                <a>Empty</a>
+            <tr>
+                <td></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            {% for asset in form_2 %}
+            {% if asset %}
+            <tr>
+                <td>{{ asset.institution }}</td>
+                <td>{{ asset.amount }}</td>
+                <td>{{ asset.growth }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td></td>
+            </tr>
             {% endif %}
             {% endfor %}
             </tbody>
         </table>
-    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
+    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a><br>
+    <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
     <br>
     <br>
     <h2>Debt Breakdown</h2>

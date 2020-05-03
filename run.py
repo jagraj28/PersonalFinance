@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash
-from forms import add_assets, add_investments, add_debts, LoginForm, RegistrationForm
+from forms import add_assets, add_investments, add_debts
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -17,30 +17,22 @@ class adding_assets(db.Model, UserMixin):
     def __repr__(self):
         return f"adding_assets('{self.bank}', '{self.amount}', '{self.interest}')"
 
+
+class adding_investments(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    institution = db.Column(db.String(30), unique=False, nullable=False)
+    amount = db.Column(db.Integer, unique=False, nullable=False)
+    growth = db.Column(db.Integer, unique=False, nullable=False)
+
+    def __repr__(self):
+        return f"adding_assets('{self.institution}', '{self.amount}', '{self.growth}')"
+
+
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html')
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(f'Account created!', 'success')
-        return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
-
-
-@app.route("/login", methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
 
 @app.route('/assets', methods=['GET', 'POST'])
 def assets():
@@ -55,15 +47,20 @@ def assets():
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('assets.html', title='Assets', form=form)
 
+
 @app.route('/investments', methods=['GET', 'POST'])
 def investments():
     form = add_investments()
     if form.validate_on_submit():
+        investment = adding_investments(institution=form.institution.data, amount=form.amount.data, growth=form.growth.data)
+        db.session.add(investment)
+        db.session.commit()
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'), form=form)
+        return redirect(url_for('home'))
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('investments.html', title='Investments', form=form)
+
 
 @app.route('/debts', methods=['GET', 'POST'])
 def debts():
@@ -75,10 +72,13 @@ def debts():
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('debts.html', title='Debts', form=form)
 
+
 @app.route('/account', methods=['GET', 'POST'])
 def account():
-    form = adding_assets.query.all()
-    return render_template('account.html', title='Account', form=form)
+    form_1 = adding_assets.query.all()
+    form_2 = adding_investments.query.all()
+    return render_template('account.html', title='Account', form_1=form_1, form_2=form_2)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
