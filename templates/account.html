@@ -19,28 +19,20 @@
                 <th>Institution</th>
                 <th>Amount</th>
                 <th>Interest</th>
-                <th>Notes</th>
             </tr>
             </thead>
             <tbody>
+            {% for asset in form %}
+            {% if asset %}
             <tr>
-                <td>{{ user.bank }}</td>
-                <td>{{ user.amount }}</td>
-                <td>{{ user.interest }}</td>
-                <td><input type='text'></td>
+                <td>{{ asset.bank }}</td>
+                <td>{{ asset.amount }}</td>
+                <td>{{ asset.interest }}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type='text'></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type='text'></td>
-            </tr>
+            {% else %}
+                <a>Empty</a>
+            {% endif %}
+            {% endfor %}
             </tbody>
         </table>
     <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
@@ -54,7 +46,6 @@
                 <th>Type</th>
                 <th>Amount</th>
                 <th>Interest</th>
-                <th>Notes</th>
             </tr>
             </thead>
             <tbody>
@@ -62,19 +53,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><input type='text'></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type='text'></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><input type='text'></td>
             </tr>
             </tbody>
         </table>

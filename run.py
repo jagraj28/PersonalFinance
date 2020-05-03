@@ -10,9 +10,9 @@ db = SQLAlchemy(app)
 
 class adding_assets(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    bank = db.Column(db.String(30), unique=True, nullable=False)
-    amount = db.Column(db.Integer, unique=True, nullable=False)
-    interest = db.Column(db.Integer, unique=True, nullable=False)
+    bank = db.Column(db.String(30), unique=False, nullable=False)
+    amount = db.Column(db.Integer, unique=False, nullable=False)
+    interest = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
         return f"adding_assets('{self.bank}', '{self.amount}', '{self.interest}')"
@@ -50,7 +50,7 @@ def assets():
         db.session.add(asset)
         db.session.commit()
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'), form=form)
+        return redirect(url_for('home'))
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('assets.html', title='Assets', form=form)
@@ -77,8 +77,8 @@ def debts():
 
 @app.route('/account', methods=['GET', 'POST'])
 def account():
-    user = adding_assets.query.get(1)
-    return render_template('account.html', title='Account', user=user)
+    form = adding_assets.query.all()
+    return render_template('account.html', title='Account', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
