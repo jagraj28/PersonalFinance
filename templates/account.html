@@ -21,6 +21,7 @@
                 <th>Interest</th>
             </tr>
             </thead>
+
             <tbody>
             {% for asset in form_1 %}
             {% if asset %}
@@ -30,11 +31,10 @@
                 <td>{{ asset.interest }}</td>
             </tr>
             {% else %}
-            <tr>
-                <td></td>
-            </tr>
+            <tr><td></td></tr>
             {% endif %}
             {% endfor %}
+
             {% for asset in form_2 %}
             {% if asset %}
             <tr>
@@ -43,9 +43,7 @@
                 <td>{{ asset.growth }}</td>
             </tr>
             {% else %}
-            <tr>
-                <td></td>
-            </tr>
+            <tr><td></td></tr>
             {% endif %}
             {% endfor %}
             </tbody>
@@ -65,11 +63,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+                {% for asset in form_3 %}
+                {% if asset %}
+                <tr>
+                    <td>{{ asset.debt_type }}</td>
+                    <td>{{ asset.amount }}</td>
+                    <td>{{ asset.interest }}</td>
+                </tr>
+                {% else %}
+                <tr><td></td></tr>
+                {% endif %}
+                {% endfor %}
             </tbody>
         </table>
     <a href="{{ url_for('debts') }}">Forgot to add some debts! Add them over on the debts page!</a>

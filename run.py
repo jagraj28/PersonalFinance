@@ -28,6 +28,16 @@ class adding_investments(db.Model, UserMixin):
         return f"adding_assets('{self.institution}', '{self.amount}', '{self.growth}')"
 
 
+class adding_debts(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    debt_type = db.Column(db.String(30), unique=False, nullable=False)
+    amount = db.Column(db.Integer, unique=False, nullable=False)
+    interest = db.Column(db.Integer, unique=False, nullable=False)
+
+    def __repr__(self):
+        return f"adding_assets('{self.type}', '{self.amount}', '{self.interest}')"
+
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -66,8 +76,11 @@ def investments():
 def debts():
     form = add_debts()
     if form.validate_on_submit():
+        debt = adding_debts(debt_type=form.debt_type.data, amount=form.amount.data, interest=form.interest.data)
+        db.session.add(debt)
+        db.session.commit()
         flash(f'Changes made saved!', 'success')
-        return redirect(url_for('home'), form=form)
+        return redirect(url_for('home'))
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
     return render_template('debts.html', title='Debts', form=form)
@@ -77,7 +90,8 @@ def debts():
 def account():
     form_1 = adding_assets.query.all()
     form_2 = adding_investments.query.all()
-    return render_template('account.html', title='Account', form_1=form_1, form_2=form_2)
+    form_3 = adding_debts.query.all()
+    return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3)
 
 
 if __name__ == '__main__':
