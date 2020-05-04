@@ -2,7 +2,7 @@
 {% block content %}
 <link rel="stylesheet" href='run.py'>
 <div class="container">
-    <h2>Net Worth</h2>
+    <h3>Net Worth</h3>
     <style>
         .even-larger-badge{
             font-size: 2.0em;
@@ -11,7 +11,7 @@
     <span class="badge badge-info even-larger-badge">0</span>
     <br>
     <br>
-    <h2>Asset Breakdown</h2>
+    <h3>Asset Breakdown</h3>
         <h4>Total cash and investments:</h4>         
         <table class="table table-striped">
             <thead>
@@ -26,7 +26,7 @@
             {% for asset in form_1 %}
             {% if asset %}
             <tr>
-                <td>{{ asset.bank }}</td>
+                <td> <a href="{{ url_for('edit') }}">{{ asset.bank }}</td>
                 <td>{{ asset.amount }}</td>
                 <td>{{ asset.interest }}</td>
             </tr>
@@ -38,7 +38,7 @@
             {% for asset in form_2 %}
             {% if asset %}
             <tr>
-                <td>{{ asset.institution }}</td>
+                <td> <a href="{{ url_for('edit') }}">{{ asset.institution }}</td>
                 <td>{{ asset.amount }}</td>
                 <td>{{ asset.growth }}</td>
             </tr>
@@ -52,7 +52,7 @@
     <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
     <br>
     <br>
-    <h2>Debt Breakdown</h2>
+    <h3>Debt Breakdown</h3>
         <h4>Total debts:</h4>         
         <table class="table table-striped">
             <thead>
@@ -66,7 +66,7 @@
                 {% for asset in form_3 %}
                 {% if asset %}
                 <tr>
-                    <td>{{ asset.debt_type }}</td>
+                    <td> <a href="{{ url_for('edit') }}">{{ asset.debt_type }}</td>
                     <td>{{ asset.amount }}</td>
                     <td>{{ asset.interest }}</td>
                 </tr>

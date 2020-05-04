@@ -94,5 +94,10 @@ def account():
     return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3)
 
 
+@app.route('/edit')
+def edit():
+    return render_template('edit.html', title='Edit')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
