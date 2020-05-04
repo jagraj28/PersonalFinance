@@ -17,8 +17,8 @@
             <thead>
             <tr>
                 <th>Institution</th>
-                <th>Amount</th>
-                <th>Interest</th>
+                <th>Amount (£)</th>
+                <th>Interest (%)</th>
             </tr>
             </thead>
 
@@ -46,6 +46,11 @@
             <tr><td></td></tr>
             {% endif %}
             {% endfor %}
+            <tr>
+                <th>Total</th>
+                <th></th>
+                <th></th>
+            </tr>
             </tbody>
         </table>
     <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a><br>
@@ -58,10 +63,11 @@
             <thead>
             <tr>
                 <th>Type</th>
-                <th>Amount</th>
-                <th>Interest</th>
+                <th>Amount (£)</th>
+                <th>Interest (%)</th>
             </tr>
             </thead>
+
             <tbody>
                 {% for asset in form_3 %}
                 {% if asset %}
@@ -74,10 +80,13 @@
                 <tr><td></td></tr>
                 {% endif %}
                 {% endfor %}
+                <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </tbody>
         </table>
     <a href="{{ url_for('debts') }}">Forgot to add some debts! Add them over on the debts page!</a>
-    <br>
-    <br>
 </div>
 {% endblock content %}

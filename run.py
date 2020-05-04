@@ -90,11 +90,11 @@ def debts():
 def account():
     form_1 = adding_assets.query.all()
     form_2 = adding_investments.query.all()
-    form_3 = adding_debts.query.all()
+    form_3 = adding_debts.query.all() 
     return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3)
 
 
-@app.route('/edit')
+@app.route('/edit', methods=['GET', 'POST'])
 def edit():
     return render_template('edit.html', title='Edit')
 
