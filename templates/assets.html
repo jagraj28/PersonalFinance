@@ -5,6 +5,8 @@
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Add your cash assets here!</legend>
+            <h5>Please do not enter comma's in the amount section.</h5>
+            <br>
             <div class="form-group">
                 {{ form.bank.label(class="form-control-label") }}
                 {% if form.bank.errors %}

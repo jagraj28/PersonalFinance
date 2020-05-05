@@ -25,7 +25,7 @@ class adding_investments(db.Model, UserMixin):
     growth = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
-        return f"adding_assets('{self.institution}', '{self.amount}', '{self.growth}')"
+        return f"adding_investments('{self.institution}', '{self.amount}', '{self.growth}')"
 
 
 class adding_debts(db.Model, UserMixin):
@@ -35,7 +35,7 @@ class adding_debts(db.Model, UserMixin):
     interest = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
-        return f"adding_assets('{self.type}', '{self.amount}', '{self.interest}')"
+        return f"adding_debts('{self.debt_type}', '{self.amount}', '{self.interest}')"
 
 
 @app.route('/')
@@ -90,8 +90,14 @@ def debts():
 def account():
     form_1 = adding_assets.query.all()
     form_2 = adding_investments.query.all()
-    form_3 = adding_debts.query.all() 
-    return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3)
+    form_3 = adding_debts.query.all()
+    result_1 = [r.amount for r in db.session.query(adding_assets).all()]
+    result_2 = [r.amount for r in db.session.query(adding_investments).all()]
+    total_assets = sum(result_1) + sum(result_2)
+    result_3 = [r.amount for r in db.session.query(adding_debts).all()]
+    total_debts = sum(result_3)
+    return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3, 
+                            total_assets=total_assets, total_debts=total_debts)
 
 
 @app.route('/edit', methods=['GET', 'POST'])
