@@ -93,14 +93,16 @@ def account():
     form_3 = adding_debts.query.all()
 
     result_1 = [r.amount for r in db.session.query(adding_assets).all()]
+    total_assets = sum(result_1) 
     result_2 = [r.amount for r in db.session.query(adding_investments).all()]
-    total_assets = sum(result_1) + sum(result_2)
+    total_investments = sum(result_2)
     result_3 = [r.amount for r in db.session.query(adding_debts).all()]
     total_debts = sum(result_3)
+    net_worth = total_assets + total_investments - total_debts
 
-    net_worth = total_assets - total_debts
     return render_template('account.html', title='Account', form_1=form_1, form_2=form_2, form_3=form_3, 
-                            total_assets=total_assets, total_debts=total_debts, net_worth=net_worth)
+                            total_assets=total_assets, total_investments=total_investments,
+                            total_debts=total_debts, net_worth=net_worth)
 
 
 @app.route('/edit', methods=['GET', 'POST'])

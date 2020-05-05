@@ -15,13 +15,12 @@
     {% else %}
         <span class="badge badge-info even-larger-badge">0</span>
     {% endif %}
-    <br>
-    <br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <h3>Asset Breakdown</h3>       
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Institution</th>
+                <th>Bank</th>
                 <th>Amount (£)</th>
                 <th>Interest (%)</th>
             </tr>
@@ -39,17 +38,6 @@
             {% endif %}
             {% endfor %}
 
-            {% for asset in form_2 %}
-            {% if asset %}
-            <tr>
-                <td> <a href="{{ url_for('edit') }}">{{ asset.institution }}</td>
-                <td>{{ asset.amount }}</td>
-                <td>{{ asset.growth }}</td>
-            </tr>
-            {% else %}
-            <tr><td></td></tr>
-            {% endif %}
-            {% endfor %}
             <tr>
                 <th>Total</th>
                 <th>{{ total_assets }}</th>
@@ -57,10 +45,38 @@
             </tr>
             </tbody>
         </table>
-    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a><br>
+    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    <h3>Investment Breakdown</h3>       
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Institution</th>
+            <th>Amount (£)</th>
+            <th>Growth (%)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for asset in form_2 %}
+        {% if asset %}
+        <tr>
+            <td> <a href="{{ url_for('edit') }}">{{ asset.institution }}</td>
+            <td>{{ asset.amount }}</td>
+            <td>{{ asset.growth }}</td>
+        </tr>
+        {% else %}
+        <tr><td></td></tr>
+        {% endif %}
+        {% endfor %}
+        <tr>
+            <th>Total</th>
+            <th>{{ total_investments }}</th>
+            <th></th>
+        </tr>
+        </tbody>
+    </table>
     <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
-    <br>
-    <br>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <h3>Debt Breakdown</h3>
         <table class="table table-striped">
             <thead>
