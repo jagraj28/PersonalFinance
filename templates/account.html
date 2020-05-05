@@ -8,11 +8,16 @@
             font-size: 2.0em;
         }
     </style>
-    <span class="badge badge-info even-larger-badge">0</span>
+    {% if net_worth > 0 %}
+        <span class="badge badge-info even-larger-badge" style="background-color:MediumSeaGreen;">{{ net_worth }}</span>
+    {% elif net_worth < 0  %}
+        <span class="badge badge-info even-larger-badge" style="background-color:Tomato;">{{ net_worth }}</span>
+    {% else %}
+        <span class="badge badge-info even-larger-badge">0</span>
+    {% endif %}
     <br>
     <br>
-    <h3>Asset Breakdown</h3>
-        <h4>Total cash and investments:</h4>         
+    <h3>Asset Breakdown</h3>       
         <table class="table table-striped">
             <thead>
             <tr>
@@ -21,7 +26,6 @@
                 <th>Interest (%)</th>
             </tr>
             </thead>
-
             <tbody>
             {% for asset in form_1 %}
             {% if asset %}
@@ -58,7 +62,6 @@
     <br>
     <br>
     <h3>Debt Breakdown</h3>
-        <h4>Total debts:</h4>         
         <table class="table table-striped">
             <thead>
             <tr>
@@ -67,7 +70,6 @@
                 <th>Interest (%)</th>
             </tr>
             </thead>
-
             <tbody>
                 {% for asset in form_3 %}
                 {% if asset %}
