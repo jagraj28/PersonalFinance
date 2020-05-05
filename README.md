@@ -26,3 +26,11 @@ Account
   - Debt Breakdown
 Login
 Register
+
+06/05/20:
+- added ability to output asset and debt totals under account breakdowns. 
+- net worth resembles assets - breakdown
+- finally gave investments their own section separate from assets under breakdowns
+- still need to code delete function to delete a given account when clicked on
+  - need to utilise the id of the account, similarly to accessing the amounts
+- would like to add some more content to the home page
