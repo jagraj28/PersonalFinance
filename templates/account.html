@@ -9,11 +9,11 @@
         }
     </style>
     {% if net_worth > 0 %}
-        <span class="badge badge-info even-larger-badge" style="background-color:MediumSeaGreen;">{{ net_worth }}</span>
+        <span class="badge badge-info even-larger-badge" style="background-color:MediumSeaGreen;">£{{ net_worth }}</span>
     {% elif net_worth < 0  %}
-        <span class="badge badge-info even-larger-badge" style="background-color:Tomato;">{{ net_worth }}</span>
+        <span class="badge badge-info even-larger-badge" style="background-color:Tomato;">£{{ net_worth }}</span>
     {% else %}
-        <span class="badge badge-info even-larger-badge">0</span>
+        <span class="badge badge-info even-larger-badge">£0</span>
     {% endif %}
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     <h3>Asset Breakdown</h3>       
@@ -21,7 +21,7 @@
             <thead>
             <tr>
                 <th>Bank</th>
-                <th>Amount (£)</th>
+                <th>Amount</th>
                 <th>Interest (%)</th>
             </tr>
             </thead>
@@ -30,7 +30,7 @@
             {% if asset %}
             <tr>
                 <td> <a href="{{ url_for('edit') }}">{{ asset.bank }}</td>
-                <td>{{ asset.amount }}</td>
+                <td>£{{ asset.amount }}</td>
                 <td>{{ asset.interest }}</td>
             </tr>
             {% else %}
@@ -40,7 +40,7 @@
 
             <tr>
                 <th>Total</th>
-                <th>{{ total_assets }}</th>
+                <th>£{{ total_assets }}</th>
                 <th></th>
             </tr>
             </tbody>
@@ -52,7 +52,7 @@
         <thead>
         <tr>
             <th>Institution</th>
-            <th>Amount (£)</th>
+            <th>Amount</th>
             <th>Growth (%)</th>
         </tr>
         </thead>
@@ -61,7 +61,7 @@
         {% if asset %}
         <tr>
             <td> <a href="{{ url_for('edit') }}">{{ asset.institution }}</td>
-            <td>{{ asset.amount }}</td>
+            <td>£{{ asset.amount }}</td>
             <td>{{ asset.growth }}</td>
         </tr>
         {% else %}
@@ -70,7 +70,7 @@
         {% endfor %}
         <tr>
             <th>Total</th>
-            <th>{{ total_investments }}</th>
+            <th>£{{ total_investments }}</th>
             <th></th>
         </tr>
         </tbody>
@@ -82,7 +82,7 @@
             <thead>
             <tr>
                 <th>Type</th>
-                <th>Amount (£)</th>
+                <th>Amount</th>
                 <th>Interest (%)</th>
             </tr>
             </thead>
@@ -91,7 +91,7 @@
                 {% if asset %}
                 <tr>
                     <td> <a href="{{ url_for('edit') }}">{{ asset.debt_type }}</td>
-                    <td>{{ asset.amount }}</td>
+                    <td>£{{ asset.amount }}</td>
                     <td>{{ asset.interest }}</td>
                 </tr>
                 {% else %}
@@ -100,7 +100,7 @@
                 {% endfor %}
                 <tr>
                     <th>Total</th>
-                    <th>{{ total_debts }}</th>
+                    <th>£{{ total_debts }}</th>
                     <th></th>
                 </tr>
             </tbody>
