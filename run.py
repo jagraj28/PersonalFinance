@@ -86,7 +86,7 @@ def debts():
     return render_template('debts.html', title='Debts', form=form)
 
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 def account():
     form_1 = adding_assets.query.all()
     form_2 = adding_investments.query.all()
@@ -105,22 +105,28 @@ def account():
                             total_debts=total_debts, net_worth=net_worth)
 
 
-@app.route('/edit/<int:asset_id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:asset_id>', methods=['GET', 'POST'])
 def delete_asset(asset_id):
     asset = adding_assets.query.get(asset_id)
-    return render_template('edit.html', title='Edit')
+    db.session.delete(asset)
+    db.session.commit()
+    return render_template('delete.html', title='Delete')
 
 
-@app.route('/edit/<int:investment_id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:investment_id>', methods=['GET', 'POST'])
 def delete_investment(investment_id):
     investment = adding_investments.query.get(investment_id)
-    return render_template('edit.html', title='Edit')
+    db.session.delete(investment)
+    db.session.commit()
+    return render_template('delete.html', title='Delete')
 
 
-@app.route('/edit/<int:debt_id>', methods=['GET', 'POST'])
+@app.route('/delete/<int:debt_id>', methods=['GET', 'POST'])
 def delete_debt(debt_id):
     debt = adding_debts.query.get(debt_id)
-    return render_template('edit.html', title='Edit')
+    db.session.delete(debt)
+    db.session.commit()
+    return render_template('delete.html', title='Delete')
 
 
 if __name__ == '__main__':

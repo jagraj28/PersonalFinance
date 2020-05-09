@@ -2,7 +2,7 @@
 {% block content %}
 <link rel="stylesheet" href='run.py'>
 <div class="container">
-    <h3>Net Worth</h3>
+    <h3>Net Worth:</h3>
     <style>
         .even-larger-badge{
             font-size: 2.0em;
@@ -17,7 +17,7 @@
     {% endif %}
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
-    <h3>Asset Breakdown</h3>       
+    <h4>Asset Breakdown</h4>       
         <table class="table table-striped">
             <thead>
             <tr>
@@ -49,7 +49,7 @@
     <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
-    <h3>Investment Breakdown</h3>       
+    <h4>Investment Breakdown</h4>       
     <table class="table table-striped">
         <thead>
         <tr>
@@ -80,7 +80,7 @@
     <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
-    <h3>Debt Breakdown</h3>
+    <h4>Debt Breakdown</h4>
         <table class="table table-striped">
             <thead>
             <tr>
