@@ -15,7 +15,7 @@ class adding_assets(db.Model, UserMixin):
     interest = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
-        return f"adding_assets('{self.bank}', '{self.amount}', '{self.interest}')"
+        return f"adding_assets('{self.id}', '{self.bank}', '{self.amount}', '{self.interest}')"
 
 
 class adding_investments(db.Model, UserMixin):
@@ -25,7 +25,7 @@ class adding_investments(db.Model, UserMixin):
     growth = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
-        return f"adding_investments('{self.institution}', '{self.amount}', '{self.growth}')"
+        return f"adding_investments('{self.id}', '{self.institution}', '{self.amount}', '{self.growth}')"
 
 
 class adding_debts(db.Model, UserMixin):
