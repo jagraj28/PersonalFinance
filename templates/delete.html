@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<link rel="stylesheet" href='run.py'>
 <div class="container">
     <form method="POST" action="">
         <fieldset class="form-group">
@@ -7,7 +8,7 @@
             <h4>Do you wish to delete this asset/debt?</h4>
         </fieldset>
         <div class="form-group">
-            <a type='button' class='btn btn-danger' href="{{ url_for('account', asset_id.asset.id) }}">Delete</a>
+            <a type='button' class='btn btn-danger' href="{{ url_for('account') }}">Delete</a>
         </div>
     </form>
 </div>
