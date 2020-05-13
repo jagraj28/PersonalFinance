@@ -34,3 +34,7 @@ Register
 - still need to code delete function to delete a given account when clicked on
   - need to utilise the id of the account, similarly to accessing the amounts
 - would like to add some more content to the home page
+
+11/05/20:
+- database deletes all assets regardless of item selected
+- need to find solution to this
