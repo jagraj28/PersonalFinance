@@ -28,15 +28,11 @@
             </thead>
             <tbody>
             {% for asset in form_1 %}
-            {% if asset %}
             <tr>
                 <td> <a href="{{ url_for('delete_asset', asset_id=asset.id) }}">{{ asset.bank }}</td>
                 <td>£{{ asset.amount }}</td>
                 <td>{{ asset.interest }}</td>
             </tr>
-            {% else %}
-            <tr><td></td></tr>
-            {% endif %}
             {% endfor %}
 
             <tr>
@@ -60,15 +56,11 @@
         </thead>
         <tbody>
         {% for investment in form_2 %}
-        {% if investment %}
         <tr>
             <td> <a href="{{ url_for('delete_investment', investment_id=investment.id) }}">{{ investment.institution }}</td>
             <td>£{{ investment.amount }}</td>
             <td>{{ investment.growth }}</td>
         </tr>
-        {% else %}
-        <tr><td></td></tr>
-        {% endif %}
         {% endfor %}
         <tr>
             <th>Total</th>
@@ -91,15 +83,11 @@
             </thead>
             <tbody>
                 {% for debt in form_3 %}
-                {% if debt %}
                 <tr>
                     <td> <a href="{{ url_for('delete_debt', debt_id=debt.id) }}">{{ debt.debt_type }}</td>
                     <td>£{{ debt.amount }}</td>
                     <td>{{ debt.interest }}</td>
                 </tr>
-                {% else %}
-                <tr><td></td></tr>
-                {% endif %}
                 {% endfor %}
                 <tr>
                     <th>Total</th>

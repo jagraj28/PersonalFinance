@@ -10,9 +10,9 @@ db = SQLAlchemy(app)
 
 class adding_assets(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    bank = db.Column(db.String(30), unique=False, nullable=False)
-    amount = db.Column(db.Integer, unique=False, nullable=False)
-    interest = db.Column(db.Integer, unique=False, nullable=False)
+    bank = db.Column(db.String, nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    interest = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f"adding_assets('{self.id}', '{self.bank}', '{self.amount}', '{self.interest}')"
@@ -20,9 +20,9 @@ class adding_assets(db.Model, UserMixin):
 
 class adding_investments(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    institution = db.Column(db.String(30), unique=False, nullable=False)
-    amount = db.Column(db.Integer, unique=False, nullable=False)
-    growth = db.Column(db.Integer, unique=False, nullable=False)
+    institution = db.Column(db.String, nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    growth = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
         return f"adding_investments('{self.id}', '{self.institution}', '{self.amount}', '{self.growth}')"
@@ -30,12 +30,12 @@ class adding_investments(db.Model, UserMixin):
 
 class adding_debts(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    debt_type = db.Column(db.String(30), unique=False, nullable=False)
-    amount = db.Column(db.Integer, unique=False, nullable=False)
-    interest = db.Column(db.Integer, unique=False, nullable=False)
+    debt_type = db.Column(db.String, nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    interest = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return f"adding_debts('{self.debt_type}', '{self.amount}', '{self.interest}')"
+        return f"adding_debts('{self.id}', '{self.debt_type}', '{self.amount}', '{self.interest}')"
 
 
 @app.route('/')
@@ -107,26 +107,35 @@ def account():
 
 @app.route('/delete/<int:asset_id>', methods=['GET', 'POST'])
 def delete_asset(asset_id):
-    asset = adding_assets.query.get(asset_id)
-    db.session.delete(asset)
-    db.session.commit()
-    return render_template('delete.html', title='Delete')
+    if adding_assets.query.first() == None:
+        pass
+    else:
+        asset = adding_assets.query.filter_by(id=asset_id).first()
+        db.session.delete(asset)
+        db.session.commit()
+    return render_template('delete.html', title='Delete', asset_id=asset_id)
 
 
 @app.route('/delete/<int:investment_id>', methods=['GET', 'POST'])
 def delete_investment(investment_id):
-    investment = adding_investments.query.get(investment_id)
-    db.session.delete(investment)
-    db.session.commit()
-    return render_template('delete.html', title='Delete')
+    if adding_investments.query.first() == None:
+        pass
+    else:
+        investment = adding_investments.query.filter_by(id=investment_id).first()
+        db.session.delete(investment)
+        db.session.commit()
+    return render_template('delete.html', title='Delete', investment_id=investment_id)
 
 
 @app.route('/delete/<int:debt_id>', methods=['GET', 'POST'])
 def delete_debt(debt_id):
-    debt = adding_debts.query.get(debt_id)
-    db.session.delete(debt)
-    db.session.commit()
-    return render_template('delete.html', title='Delete')
+    if adding_debts.query.first() == None:
+        pass
+    else:
+        debt = adding_debts.query.filter_by(id=debt_id).first()
+        db.session.delete(debt)
+        db.session.commit()
+    return render_template('delete.html', title='Delete', debt_id=debt_id)
 
 
 if __name__ == '__main__':
