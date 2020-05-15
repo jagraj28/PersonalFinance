@@ -113,6 +113,7 @@ def delete_asset(asset_id):
         asset = adding_assets.query.filter_by(id=asset_id).first()
         db.session.delete(asset)
         db.session.commit()
+        return redirect(url_for('account'))
     return render_template('delete.html', title='Delete', asset_id=asset_id)
 
 
@@ -124,6 +125,7 @@ def delete_investment(investment_id):
         investment = adding_investments.query.filter_by(id=investment_id).first()
         db.session.delete(investment)
         db.session.commit()
+        return redirect(url_for('account'))
     return render_template('delete.html', title='Delete', investment_id=investment_id)
 
 
@@ -135,6 +137,7 @@ def delete_debt(debt_id):
         debt = adding_debts.query.filter_by(id=debt_id).first()
         db.session.delete(debt)
         db.session.commit()
+        return redirect(url_for('account'))
     return render_template('delete.html', title='Delete', debt_id=debt_id)
 
 
