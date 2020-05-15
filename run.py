@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from forms import add_assets, add_investments, add_debts
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
@@ -105,40 +105,34 @@ def account():
                             total_debts=total_debts, net_worth=net_worth)
 
 
-@app.route('/delete/<int:asset_id>', methods=['GET', 'POST'])
+@app.route('/delete/asset/<int:asset_id>', methods=['GET', 'POST'])
 def delete_asset(asset_id):
-    if adding_assets.query.first() == None:
-        pass
-    else:
-        asset = adding_assets.query.filter_by(id=asset_id).first()
-        db.session.delete(asset)
-        db.session.commit()
+    if request.method == 'POST':
+        asset = adding_assets.query.filter_by(id=asset_id).first()         
+        db.session.delete(asset)         
+        db.session.commit() 
         return redirect(url_for('account'))
-    return render_template('delete.html', title='Delete', asset_id=asset_id)
+    return render_template('delete_asset.html', title='Delete', asset_id=asset_id)
 
 
-@app.route('/delete/<int:investment_id>', methods=['GET', 'POST'])
+@app.route('/delete/investment/<int:investment_id>', methods=['GET', 'POST'])
 def delete_investment(investment_id):
-    if adding_investments.query.first() == None:
-        pass
-    else:
+    if request.method == 'POST':
         investment = adding_investments.query.filter_by(id=investment_id).first()
         db.session.delete(investment)
         db.session.commit()
         return redirect(url_for('account'))
-    return render_template('delete.html', title='Delete', investment_id=investment_id)
+    return render_template('delete_investment.html', title='Delete', investment_id=investment_id)
 
 
-@app.route('/delete/<int:debt_id>', methods=['GET', 'POST'])
+@app.route('/delete/debt/<int:debt_id>', methods=['GET', 'POST'])
 def delete_debt(debt_id):
-    if adding_debts.query.first() == None:
-        pass
-    else:
+    if request.method == 'POST':
         debt = adding_debts.query.filter_by(id=debt_id).first()
         db.session.delete(debt)
         db.session.commit()
         return redirect(url_for('account'))
-    return render_template('delete.html', title='Delete', debt_id=debt_id)
+    return render_template('delete_debt.html', title='Delete', debt_id=debt_id)
 
 
 if __name__ == '__main__':
