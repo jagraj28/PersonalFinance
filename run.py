@@ -112,7 +112,7 @@ def delete_asset(asset_id):
         db.session.delete(asset)         
         db.session.commit() 
         return redirect(url_for('account'))
-    return render_template('delete_asset.html', title='Delete', asset_id=asset_id)
+    return render_template('delete.html', title='Delete', asset_id=asset_id)
 
 
 @app.route('/delete/investment/<int:investment_id>', methods=['GET', 'POST'])
@@ -122,7 +122,7 @@ def delete_investment(investment_id):
         db.session.delete(investment)
         db.session.commit()
         return redirect(url_for('account'))
-    return render_template('delete_investment.html', title='Delete', investment_id=investment_id)
+    return render_template('delete.html', title='Delete', investment_id=investment_id)
 
 
 @app.route('/delete/debt/<int:debt_id>', methods=['GET', 'POST'])
@@ -132,7 +132,7 @@ def delete_debt(debt_id):
         db.session.delete(debt)
         db.session.commit()
         return redirect(url_for('account'))
-    return render_template('delete_debt.html', title='Delete', debt_id=debt_id)
+    return render_template('delete.html', title='Delete', debt_id=debt_id)
 
 
 if __name__ == '__main__':
