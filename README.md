@@ -38,3 +38,8 @@ Register
 11/05/20:
 - database deletes all assets regardless of item selected
 - need to find solution to this
+
+15/05/20:
+- fix finally complete, correct item is deleted when clicked on
+- route urls needed changing as they kept calling every function instead of just individual function
+- next steps are to add content to home page, perhaps include graphs, and also be able to edit each item, it's name, amount and interest
