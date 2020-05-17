@@ -17,14 +17,15 @@
     {% endif %}
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
-    <h4>Asset Breakdown</h4>       
+    <h4><u>Asset Breakdown</u></h4>      
         <table class="table">
             <thead>
             <tr>
                 <th>Bank</th>
                 <th>Amount</th>
                 <th>Interest (%)</th>
-                <th>Delete?</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -34,11 +35,13 @@
                 <td>£{{ asset.amount }}</td>
                 <td>{{ asset.interest }}</td>
                 <td>
+                    <a type='submit' class='btn btn-primary btn-sm' href="#">Edit</a>
+                </td>
+                <td>
                     <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_asset', asset_id=asset.id) }}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
-
             <tr>
                 <th>Total</th>
                 <th>£{{ total_assets }}</th>
@@ -49,45 +52,50 @@
     <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
-    <h4>Investment Breakdown</h4>       
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Institution</th>
-            <th>Amount</th>
-            <th>Growth (%)</th>
-            <th>Delete?</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for investment in form_2 %}
-        <tr>
-            <td>{{ investment.institution }}</td>
-            <td>£{{ investment.amount }}</td>
-            <td>{{ investment.growth }}</td>
-            <td>
-                <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_investment', investment_id=investment.id) }}">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <th>Total</th>
-            <th>£{{ total_investments }}</th>
-            <th></th>
-        </tr>
-        </tbody>
-    </table>
+    <h4><u>Investment Breakdown</u></h4>    
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Institution</th>
+                <th>Amount</th>
+                <th>Growth (%)</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for investment in form_2 %}
+            <tr>
+                <td>{{ investment.institution }}</td>
+                <td>£{{ investment.amount }}</td>
+                <td>{{ investment.growth }}</td>
+                <td>
+                    <a type='submit' class='btn btn-primary btn-sm' href="#">Edit</a>
+                </td>
+                <td>
+                    <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_investment', investment_id=investment.id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>Total</th>
+                <th>£{{ total_investments }}</th>
+                <th></th>
+            </tr>
+            </tbody>
+        </table>
     <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-    
-    <h4>Debt Breakdown</h4>
+
+    <h4><u>Debt Breakdown</u></h4>
         <table class="table">
             <thead>
             <tr>
                 <th>Type</th>
                 <th>Amount</th>
                 <th>Interest (%)</th>
-                <th>Delete?</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -96,6 +104,9 @@
                     <td>{{ debt.debt_type }}</td>
                     <td>£{{ debt.amount }}</td>
                     <td>{{ debt.interest }}</td>
+                    <td>
+                        <a type='submit' class='btn btn-primary btn-sm' href="#">Edit</a>
+                    </td>
                     <td>
                         <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_debt', debt_id=debt.id) }}">Delete</a>
                     </td>
