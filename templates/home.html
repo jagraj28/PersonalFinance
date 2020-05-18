@@ -12,4 +12,11 @@
             Going to My Account will show you your net worth, which takes into account assets, investments
             and debts you have. There is also a breakdown of the assets and debts you possess.
         </h4>
+        <hr>
+        <div>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('assets') }}">Add Asset</a>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('investments') }}">Add Investment</a>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('debts') }}">Add Debt</a>
+            <a class="btn btn-warning btn-lg" href="{{ url_for('account') }}">My Account</a>
+        </div>
 {% endblock content %}

@@ -135,5 +135,10 @@ def delete_debt(debt_id):
     return render_template('delete.html', title='Delete', debt_id=debt_id)
 
 
+@app.route('/edit/asset', methods=['GET', 'POST'])
+def edit_asset():
+    pass
+
+
 if __name__ == '__main__':
     app.run(debug=True)
