@@ -135,9 +135,14 @@ def delete_debt(debt_id):
     return render_template('delete.html', title='Delete', debt_id=debt_id)
 
 
-@app.route('/edit/asset', methods=['GET', 'POST'])
-def edit_asset():
-    pass
+@app.route('/edit/asset/<int:asset_id>', methods=['GET', 'POST'])
+def edit_asset(asset_id):
+    form = add_assets()
+    if form.validate_on_submit():
+        asset = adding_assets(bank=form.bank.data, amount=form.amount.data, interest=form.interest.data)
+    else:
+        flash('Changes not saved, please check the data is correct!', 'danger')
+    return render_template('edit.html', title='Edit', form=form, asset_id=asset_id)
 
 
 if __name__ == '__main__':
