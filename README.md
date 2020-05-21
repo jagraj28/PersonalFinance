@@ -28,7 +28,7 @@ Login
 Register
 
 06/05/20:
-- added ability to output asset and debt totals under account breakdowns. 
+- added ability to output asset and debt totals under account breakdowns
 - net worth resembles assets - breakdown
 - finally gave investments their own section separate from assets under breakdowns
 - still need to code delete function to delete a given account when clicked on
@@ -43,3 +43,8 @@ Register
 - fix finally complete, correct item is deleted when clicked on
 - route urls needed changing as they kept calling every function instead of just individual function
 - next steps are to add content to home page, perhaps include graphs, and also be able to edit each item, it's name, amount and interest
+
+21/05/20:
+- edit button works, changes amount and interest and routes back to account page
+- added buttons to home page to route to different pages, increased functionality. 
+- 
