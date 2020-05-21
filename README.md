@@ -47,4 +47,9 @@ Register
 21/05/20:
 - edit button works, changes amount and interest and routes back to account page
 - added buttons to home page to route to different pages, increased functionality. 
-- 
+- add in history for each item, click on and be able to see changes to amount and interest
+- blog section: posts on personal journey
+- external links to websites: MSE current accounts, reddit UKPF
+- referral links: coinbase, moneybox
+- include footer
+- increase aesthetic look using HTML and CSS
