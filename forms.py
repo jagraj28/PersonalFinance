@@ -19,3 +19,18 @@ class add_debts(FlaskForm):
     amount = StringField('Amount (£)', validators=[DataRequired()])
     interest = StringField('Interest (%)', validators=[DataRequired()])
     submit = SubmitField('Save changes')
+
+class edit_assets(FlaskForm):
+    amount = StringField('Amount (£)', validators=[DataRequired()])
+    interest = StringField('Interest (%)', validators=[DataRequired()])
+    submit = SubmitField('Save changes')
+
+class edit_investments(FlaskForm):
+    amount = StringField('Amount (£)', validators=[DataRequired()])
+    growth = StringField('Growth (%)', validators=[DataRequired()])
+    submit = SubmitField('Save changes')
+
+class edit_debts(FlaskForm):
+    amount = StringField('Amount (£)', validators=[DataRequired()])
+    interest = StringField('Interest (%)', validators=[DataRequired()])
+    submit = SubmitField('Save changes')

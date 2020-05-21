@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash, request
-from forms import add_assets, add_investments, add_debts
+from forms import add_assets, add_investments, add_debts, edit_assets, edit_investments, edit_debts
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -137,12 +137,44 @@ def delete_debt(debt_id):
 
 @app.route('/edit/asset/<int:asset_id>', methods=['GET', 'POST'])
 def edit_asset(asset_id):
-    form = add_assets()
+    asset = adding_assets.query.filter_by(id=asset_id).first()
+    form = edit_assets()
     if form.validate_on_submit():
-        asset = adding_assets(bank=form.bank.data, amount=form.amount.data, interest=form.interest.data)
+        asset.amount = form.amount.data
+        asset.interest = form.interest.data
+        db.session.commit()
+        return redirect(url_for('account'))
     else:
         flash('Changes not saved, please check the data is correct!', 'danger')
-    return render_template('edit.html', title='Edit', form=form, asset_id=asset_id)
+    return render_template('edit_asset.html', title='Edit', form=form, asset_id=asset_id, asset=asset)
+
+
+@app.route('/edit/investment/<int:investment_id>', methods=['GET', 'POST'])
+def edit_investment(investment_id):
+    investment = adding_investments.query.filter_by(id=investment_id).first()
+    form = edit_investments()
+    if form.validate_on_submit():
+        investment.amount = form.amount.data
+        investment.growth = form.growth.data
+        db.session.commit()
+        return redirect(url_for('account'))
+    else:
+        flash('Changes not saved, please check the data is correct!', 'danger')
+    return render_template('edit_investment.html', title='Edit', form=form, investment_id=investment_id, investment=investment)
+
+
+@app.route('/edit/debt/<int:debt_id>', methods=['GET', 'POST'])
+def edit_debt(debt_id):
+    debt = adding_debts.query.filter_by(id=debt_id).first()
+    form = edit_debts()
+    if form.validate_on_submit():
+        debt.amount = form.amount.data
+        debt.interest = form.interest.data
+        db.session.commit()
+        return redirect(url_for('account'))
+    else:
+        flash('Changes not saved, please check the data is correct!', 'danger')
+    return render_template('edit_debt.html', title='Edit', form=form, debt_id=debt_id, debt=debt)
 
 
 if __name__ == '__main__':
