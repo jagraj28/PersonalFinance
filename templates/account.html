@@ -2,7 +2,7 @@
 {% block content %}
 <link rel="stylesheet" href='run.py'>
 <div class="container">
-    <h3>Net Worth:</h3>
+    <h2>Net Worth</h2>
     <style>
         .even-larger-badge{
             font-size: 2.0em;
@@ -16,8 +16,7 @@
         <span class="badge badge-info even-larger-badge">£0</span>
     {% endif %}
 
-    <br>
-    <br>
+    <hr>
     
     <h2 style="text-align:center">Asset Breakdown</h2>
     <br>
@@ -26,7 +25,7 @@
             <tr>
                 <th>Bank</th>
                 <th>Amount</th>
-                <th>Interest (%)</th>
+                <th>Interest</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -36,12 +35,12 @@
             <tr>
                 <td>{{ asset.bank }}</td>
                 <td>£{{ asset.amount }}</td>
-                <td>{{ asset.interest }}</td>
+                <td>{{ asset.interest }}%</td>
                 <td>
-                    <a type='submit' class='btn btn-primary btn-sm' href="{{ url_for('edit_asset', asset_id=asset.id) }}">Edit</a>
+                    <a type='submit' class='btn btn-primary' href="{{ url_for('edit_asset', asset_id=asset.id) }}">Edit</a>
                 </td>
                 <td>
-                    <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_asset', asset_id=asset.id) }}">Delete</a>
+                    <a type='submit' class='btn btn-danger' href="{{ url_for('delete_asset', asset_id=asset.id) }}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -52,11 +51,9 @@
             </tr>
             </tbody>
         </table>
-    <a href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
+    <a style="font-size:20px;" href="{{ url_for('assets') }}">Can't see any assets? Add some over on the assets page!</a>
     
-    <br>
-    <br>
-    <br>
+    <hr>
     
     <h2 style="text-align:center">Investment Breakdown</h2>    
     <br>
@@ -65,7 +62,7 @@
             <tr>
                 <th>Institution</th>
                 <th>Amount</th>
-                <th>Growth (%)</th>
+                <th>Growth</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -75,12 +72,12 @@
             <tr>
                 <td>{{ investment.institution }}</td>
                 <td>£{{ investment.amount }}</td>
-                <td>{{ investment.growth }}</td>
+                <td>{{ investment.growth }}%</td>
                 <td>
-                    <a type='submit' class='btn btn-primary btn-sm' href="{{ url_for('edit_investment', investment_id=investment.id) }}">Edit</a>
+                    <a type='submit' class='btn btn-primary' href="{{ url_for('edit_investment', investment_id=investment.id) }}">Edit</a>
                 </td>
                 <td>
-                    <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_investment', investment_id=investment.id) }}">Delete</a>
+                    <a type='submit' class='btn btn-danger' href="{{ url_for('delete_investment', investment_id=investment.id) }}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -91,19 +88,17 @@
             </tr>
             </tbody>
         </table>
-    <a href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
+    <a style="font-size:20px;" href="{{ url_for('investments') }}">Can't see any investments? Add some over on the investments page!</a>
 
-    <br>
-    <br>
-    <br>
+    <hr>
 
     <h2 style="text-align:center">Debt Breakdown</h2>
-        <table class="table">
+        <table class="table" style="font-size:20px;">
             <thead>
             <tr>
                 <th>Type</th>
                 <th>Amount</th>
-                <th>Interest (%)</th>
+                <th>Interest</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -113,12 +108,12 @@
                 <tr>
                     <td>{{ debt.debt_type }}</td>
                     <td>£{{ debt.amount }}</td>
-                    <td>{{ debt.interest }}</td>
+                    <td>{{ debt.interest }}%</td>
                     <td>
-                        <a type='submit' class='btn btn-primary btn-sm' href="{{ url_for('edit_debt', debt_id=debt.id) }}">Edit</a>
+                        <a type='submit' class='btn btn-primary' href="{{ url_for('edit_debt', debt_id=debt.id) }}">Edit</a>
                     </td>
                     <td>
-                        <a type='submit' class='btn btn-danger btn-sm' href="{{ url_for('delete_debt', debt_id=debt.id) }}">Delete</a>
+                        <a type='submit' class='btn btn-danger' href="{{ url_for('delete_debt', debt_id=debt.id) }}">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -129,6 +124,6 @@
                 </tr>
             </tbody>
         </table>
-    <a href="{{ url_for('debts') }}">Forgot to add some debts! Add them over on the debts page!</a>
+    <a style="font-size:20px;" href="{{ url_for('debts') }}">Forgot to add some debts! Add them over on the debts page!</a>
 </div>
 {% endblock content %}
