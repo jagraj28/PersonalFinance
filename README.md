@@ -49,7 +49,6 @@ Register
 - added buttons to home page to route to different pages, increased functionality. 
 - add in history for each item, click on and be able to see changes to amount and interest
 - blog section: posts on personal journey
-- external links to websites: MSE current accounts, reddit UKPF
-- referral links: coinbase, moneybox
+- checkboxes on account page
 - include footer
 - increase aesthetic look using HTML and CSS

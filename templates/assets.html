@@ -3,12 +3,12 @@
 <div class="container">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        <fieldset class="form-group">
+        <fieldset class="form-group" >
             <legend class="border-bottom mb-4">Add your cash assets here!</legend>
             <span class="badge">Please do not enter comma's in the amount section!</span>
             <br>
             <br>
-            <div class="form-group">
+            <div class="form-group" >
                 {{ form.bank.label(class="form-control-label") }}
                 {% if form.bank.errors %}
                     {{ form.bank(class="form-control form-control-lg is-invalid") }}
